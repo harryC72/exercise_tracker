@@ -55,10 +55,11 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
 	const user = await User.findById(id);
 
 	return res.json({
-		...user,
+		username: user.username,
 		description: urlData.description,
 		duration: urlData.duration,
-		date: urlData.date,
+		date: urlData.date.toDateString(),
+		_id: user._id,
 	});
 });
 

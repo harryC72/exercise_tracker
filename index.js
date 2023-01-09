@@ -30,7 +30,7 @@ app.post("/api/users", async (req, res) => {
 
 	console.log("URL	data: ", urlData);
 
-	return res.json({ username, short_url: urlData._id });
+	return res.json({ username, _id: urlData._id });
 });
 
 app.get("/api/users", async (req, res) => {

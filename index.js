@@ -78,10 +78,18 @@ app.get("/api/users/:_id/logs", async (req, res) => {
 		filter,
 		"description duration date	-_id"
 	).limit(+nonNullLimit);
+
+	const presentationLog = exerciseLog.map((e) => {
+		return {
+			description: e.description,
+			duration: e.duration,
+			date: e.date.toDateString(),
+		};
+	});
 	return res.json({
 		username: user.username,
 		count: exerciseLog.length,
-		log: exerciseLog,
+		log: presentationLog,
 	});
 });
 

@@ -52,15 +52,13 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
 		date,
 	});
 
-	const user = await User.findById(id);
+	let user = await User.findById(id);
 
-	return res.json({
-		username: user.username,
-		description: urlData.description,
-		duration: urlData.duration,
-		date: urlData.date,
-		_id: user._id,
-	});
+	user.description = urlData.description;
+	user.duration = urlData.duration;
+	user.date = urlData.date;
+
+	return res.json(user);
 });
 
 app.get("/api/users/:_id/logs", async (req, res) => {
